@@ -1,0 +1,15 @@
+<h4><a href="<%= books_new_url %>">Create Book</a></h4>
+
+<ul>
+<% @books.each do |book| %>
+      <li>
+        <a href="<%= books_show_url book %>"><%= book.title %></a>
+        <a href="<%= books_edit_url book %>">Edit</a>
+        <form style="display: inline;" action="<%= books_delete_url book %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+<% end %>
+</ul>

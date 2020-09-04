@@ -1,0 +1,22 @@
+<h1>Edit book</h1>
+
+<%= @book.errors.full_messages.join('<br>') %>
+
+<form action="<%= books_update_url @book %>" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <input type="hidden" name="_method" value="put">
+  <p>Title: <input type="text" name="title" value="<%= @book.title %>"></p>
+  <p>Price: <input type="text" name="price" value="<%= @book.price %>"></p>
+  <p>Subject:
+    <select name="subject_id">
+      <option value="">--select--</option>
+      <% @subjects.each do |subject| %>
+          <option value="<%= subject.id %>" <%= if @book.subject_id == subject.id then 'selected' end %>><%= subject.name %></option>
+      <% end %>
+    </select>
+  </p>
+  <p>Description</p>
+  <textarea name="description"><%= @book.description %></textarea>
+  <br>
+  <button type="submit">Update</button>
+</form>

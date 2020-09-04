@@ -1,0 +1,19 @@
+<h1>Add new book</h1>
+
+<form action="<%= books_create_url %>" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <p>Title: <input type="text" name="title"></p>
+  <p>Price: <input type="text" name="price"></p>
+  <p>Subject:
+    <select name="subject_id">
+      <option value="">--select--</option>
+      <% @subjects.each do |subject| %>
+        <option value="<%= subject.id %>"><%= subject.name %></option>
+      <% end %>
+    </select>
+  </p>
+  <p>Description</p>
+  <textarea name="description"></textarea>
+  <br>
+  <button type="submit">Create</button>
+</form>
